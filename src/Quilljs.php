@@ -18,7 +18,6 @@ class Quilljs extends Trix
 
     public function __construct($name, $attribute = null, callable $resolveCallback = null)
     {
-        parent::__construct($name, $attribute, $resolveCallback);
         $this->tooltip();
         $this->height();
         $this->paddingBottom();
@@ -44,10 +43,10 @@ class Quilljs extends Trix
         if ($request->exists($requestAttribute)) {
             $model->{$attribute} = $request[$requestAttribute];
 
-            if (! isset($model->id)) {
+            if (!isset($model->id)) {
                 $quilljs = $this;
                 $modelClass = get_class($model);
-                if(method_exists($modelClass, 'created')) {
+                if (method_exists($modelClass, 'created')) {
                     call_user_func_array("$modelClass::created", [
                         function ($object) use ($quilljs, $request) {
                             $quilljs->persistImages($request, $object);
@@ -79,35 +78,35 @@ class Quilljs extends Trix
         }
     }
 
-    public function tooltip(bool $value=false)
+    public function tooltip(bool $value = false)
     {
-        return $value == true ? $this->withMeta(['tooltip'=> config('tooltip') ?? []]) : null;
+        return $value == true ? $this->withMeta(['tooltip' => config('tooltip') ?? []]) : null;
     }
 
-    public function config(array $options=[])
+    public function config(array $options = [])
     {
         if (empty($options)) {
             $options = config('quilljs');
         }
-        return $this->withMeta(['options'=> $options]);
+        return $this->withMeta(['options' => $options]);
     }
 
     public function placeholder($text)
     {
-        return $this->withMeta(['placeholder'=> $text]);
+        return $this->withMeta(['placeholder' => $text]);
     }
 
-    public function height(int $value=300)
+    public function height(int $value = 300)
     {
         return $this->withMeta(['height' => $value]);
     }
 
-    public function paddingBottom(int $value=0)
+    public function paddingBottom(int $value = 0)
     {
         return $this->withMeta(['paddingBottom' => $value]);
     }
 
-    public function fullWidth(bool $value=true)
+    public function fullWidth(bool $value = true)
     {
         return $this->withMeta(['stacked' => $value]);
     }
@@ -117,7 +116,7 @@ class Quilljs extends Trix
         return $this->withMeta(['maxFileSize' => $value]);
     }
 
-    public function uploadUrlSplit(string $value='')
+    public function uploadUrlSplit(string $value = '')
     {
         return $this->withMeta(['split' => $value]);
     }
