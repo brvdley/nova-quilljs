@@ -1,9 +1,5 @@
-import IndexField from './components/IndexField';
-import DetailField from './components/DetailField';
-import FormField from './components/FormField';
-
 Nova.booting((app, store) => {
-    app.component('index-quilljs', IndexField)
-    app.component('detail-quilljs', DetailField)
-    app.component('form-quilljs', FormField)
-})
+  vue.component("index-quilljs", require("./components/IndexField"));
+  vue.component("detail-quilljs", require("./components/DetailField"));
+  vue.component("form-quilljs", require("./components/FormField"));
+});
